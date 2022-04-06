@@ -1,12 +1,43 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="newColor" >
     <mat-toolbar-row>
+
+     
+      
   
-      <button mat-icon-button  (click)="drawer.toggle();"><mat-icon routerLinkActive="active-icon">menu</mat-icon></button>
-      <span>{{title}}</span>
+  
+      <button mat-icon-button *ngIf="loggedIn()"  (click)="drawer.toggle();"><mat-icon routerLinkActive="active-icon">menu</mat-icon></button >
+
+     
+      <span>TODO-Tracker</span>
+
   
       <span class="toolbar-spacer "></span>
-  
+      <button mat-flat-buttonbtn  class="btn btn-success btn-sm"  [matMenuTriggerFor]="belowMenu" *ngIf="loggedIn()" matBadge={{notifyLength}} matBadgePosition="before" matBadgeColor="accent" style="margin-right: 7px;"><i class="fa fa-bell"></i></button>
+<mat-menu #belowMenu="matMenu" yPosition="below">
+  <button *ngFor="let task of notiificationList" mat-menu-item>hello,you have <b>{{task.taskTitle}}</b> task pending</button>
+
+</mat-menu>
+
+
+<button routerLink="login" mat-flat-button color="basic" style="margin-right: 7px;" *ngIf="!loggedIn()" >LOGIN</button>
+<button routerLink="registration" mat-flat-button color="basic" *ngIf="!loggedIn()">REGISTRATION</button>
+      <!-- <button routerLink="login" mat-flat-button color="warn" style="margin-right: 7px;" *ngIf="!loggedIn()" >LOGIN</button> -->
+
+      <!-- <button  mat-flat-button color="warn" *ngIf="loggedIn() " (click)=" moveToTodo()" style="margin-right: 7px;">TO DO</button>
+      <button mat-raised-button (click)="moveToArchive()" color="warn" *ngIf="loggedIn()" style="margin-right: 7px;"> ARCHIVES</button>
+      <button  mat-flat-button color="warn" *ngIf="loggedIn()" (click)="logoutUser() ;resetStorage() ">Logout</button>
+      <button mat-raised-button routerLink="/pendingtasks"color="warn" *ngIf="loggedIn()" style="margin-right: 7px; margin-left: 7px;">Pending Tasks</button> -->
+     
+      <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn()"><mat-icon>account_circle</mat-icon></button>
+      <mat-menu #menu="matMenu">
+        
+        <button mat-menu-item>Welcome ({{userEmail}})</button>
+        <button mat-menu-item>update profile</button>
+        <button mat-menu-item (click)="logoutUser() ;resetStorage() " >Logout</button>
+      </mat-menu>    
       </mat-toolbar-row>
+
+     
   
     </mat-toolbar>
   
@@ -16,11 +47,11 @@
     class="sidenav"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="isMenuOpen">
+    [opened]="isMenuOpen"  >
   
-      <mat-nav-list >
+      <mat-nav-list>
         <a [routerLink]="['/home']" mat-list-item href="#" routerLinkActive="active"><mat-icon routerLinkActive="active-icon">home</mat-icon><span class="ml-2" > Welcome </span></a>
-        <a [routerLink]="['/todo']" mat-list-item href="#" routerLinkActive="active"><mat-icon routerLinkActive="active-icon">settings</mat-icon><span class="ml-2" >ToDo</span></a>
+        <a [routerLink]="['/todo']" mat-list-item href="#" routerLinkActive="active"><mat-icon routerLinkActive="active-icon">home</mat-icon><span class="ml-2" >ToDo</span></a>
         <a [routerLink]="['/pendingtasks']" mat-list-item href="#" routerLinkActive="active"><mat-icon routerLinkActive="active-icon">edit</mat-icon><span class="ml-2" >Pending</span></a>
         <a [routerLink]="['/sorting']" mat-list-item href="#" routerLinkActive="active"><mat-icon routerLinkActive="active-icon">sorting</mat-icon><span class="ml-2" >Sorted</span></a>
         <a [routerLink]="['/archive']" mat-list-item href="#" routerLinkActive="active"><mat-icon routerLinkActive="active-icon">done</mat-icon><span class="ml-2" >Archive</span></a>
