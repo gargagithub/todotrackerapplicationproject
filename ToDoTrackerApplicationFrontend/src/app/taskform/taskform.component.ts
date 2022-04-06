@@ -106,13 +106,18 @@ export class TaskformComponent implements OnInit {
 
     this.service.saveOfficialTask(task, this.userEmail).subscribe(data => { 
       this.toast.success({ detail: " Success Message", summary: "OfficiaTtask is added successfully", duration: 5000 })
+      this.router.navigate(['/todo'])
+  .then(() => {
+    window.location.reload();
+  });
       // this.ngOnInit();
+      // this.onClose();
       // this.router.navigate(['./todo'])
     },
       err => {
         this.toast.error({ detail: "Error Message", summary: "OfficialTask is not added", duration: 5000 })
       });
-    this.onClose();
+    
   }
 
   saveToPersonalTask() {
@@ -202,10 +207,17 @@ export class TaskformComponent implements OnInit {
       this.taskform.controls["description"].setValue(this.personalTaskById.taskDescription);
     });
   }
+  todoNg:any;
   onClose(){
-    this.taskform.reset();
+    
+    
     this.dialogRef.close();
+    this.router.navigate(['/todo']);
+    this.taskform.reset();
     // window.location.reload();
+    // this.service.getNgOninit();
+    // TodoComponent.ngOnInit();
+    
     
   }
    

@@ -30,4 +30,5 @@ public interface UserService {
     public List<Task> getAllTasksNotificationsList(String userEmail) throws UserNotFoundException, ParseException;
     public List<Task> getPendingOfficialTaskList(String userEmail) throws UserNotFoundException, ParseException;
     public List<Task> getPendingPersonalTaskList(String userEmail) throws UserNotFoundException, ParseException;
+    User updateUser(User user,String userEmail) throws UserNotFoundException;
 }

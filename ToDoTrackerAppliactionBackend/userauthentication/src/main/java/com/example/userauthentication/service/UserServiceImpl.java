@@ -40,17 +40,22 @@ public class UserServiceImpl implements UserService{
     @Override
     public User updateUser(User user, String userEmail) throws UserNotFoundException
     {
-        if (userRepository.findById(userEmail).isEmpty()) {
-            throw new UserNotFoundException();
-        }
+        if (userRepository.findById(userEmail).isPresent()) {
+            User user1=userRepository.findById(userEmail).get();
 
-        return userRepository.save(user);
+            user1.setFirstName(user.getFirstName());
+            user1.setLastName(user.getLastName());
+            user1.setPassword(user.getPassword());
+            user1.setMobileNo(user.getMobileNo());
+            return userRepository.save(user1);
+        }
+        throw new UserNotFoundException();
     }
 
 
 
-//    @Override
-//    public List<User> getAllUser() {
-//        return (List<User>) userRepository.findAll(); //findAll return type is iterable
-//    }
+    @Override
+    public List<User> getAllUser() {
+        return (List<User>) userRepository.findAll(); //findAll return type is iterable
+    }
 }

@@ -395,4 +395,20 @@ public class UserServiceImpl implements UserService {
         }
         return  pendingPersonalTaskList;
     }
+
+    @Override
+    public User updateUser(User user, String userEmail) throws UserNotFoundException
+    {
+        if (userRepository.findById(userEmail).isPresent()) {
+            User user1=userRepository.findById(userEmail).get();
+            user1.setFirstName(user.getFirstName());
+            user1.setLastName(user.getLastName());
+            user1.setPassword(user.getPassword());
+            user1.setMobileNo(user.getMobileNo());
+            ResponseEntity responseEntity=userProxy.updateUser(user,userEmail);
+            return userRepository.save(user1);
+        }
+        throw new UserNotFoundException();
+
+    }
 }

@@ -5,7 +5,7 @@
   
   .sidenav-container {
     height: 92%;
-    position: relative;
+    position: fixed;
   }
   
   .sidenav-content {
@@ -48,9 +48,15 @@
     color: red;
   }
 
+<<<<<<< HEAD
+  /* ******************************************* */
+  
+  
+=======
   .newColor{
     background-color: #000;
     position: fixed;
      top: 0;
      z-index:1000;
   }
+>>>>>>> 39a94402fc258b383b06ba0bc07d76ddb9923fbf
