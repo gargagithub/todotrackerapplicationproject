@@ -234,60 +234,62 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    @Override
-    public boolean completeOfficialTask(String userEmail, int taskId) throws UserNotFoundException, TaskNotFoundException {
-        boolean flag = false;
-        if (userRepository.findById(userEmail).isEmpty()) {
-            throw new UserNotFoundException();
-        }
-        User user = userRepository.findById(userEmail).get();
-        if (user.getOfficialTask() == null) {
-            throw new TaskNotFoundException();
-        } else {
-            List<Task> taskList = user.getOfficialTask();
-            Task task1 = taskList.stream().filter(a -> a.getTaskId() == taskId).collect(Collectors.toList()).get(0);
-            if (task1 == null) {
-                throw new TaskNotFoundException();
-            } else {
-                ArchiveDTO archivedto = new ArchiveDTO();
-                archivedto.setTaskType("Official Task");
-                archivedto.setUserEmail(userEmail);
-                archivedto.setTask(task1);
-                System.out.println(archivedto.getTask());
-                producer.sendMessageToRabbitMq(archivedto);
-                deleteOfficialTask(userEmail, taskId);
-                flag = true;
-            }
-        }
-        return flag;
+  public boolean completeOfficialTask(String userEmail, int taskId) throws UserNotFoundException,TaskNotFoundException{
+    boolean flag=false;
+    if(userRepository.findById(userEmail).isEmpty()){
+      throw new UserNotFoundException();
     }
+    User user=userRepository.findById(userEmail).get();
+    if(user.getOfficialTask()==null){
+      throw new TaskNotFoundException();
+    }
+    else {
+      List<Task> taskList=user.getOfficialTask();
+      Task task1 = taskList.stream().filter(a -> a.getTaskId() == taskId).collect(Collectors.toList()).get(0);
+      if (task1==null){
+        throw new TaskNotFoundException();
+      }
+      else{
+        ArchiveDTO archivedto=new ArchiveDTO();
+        archivedto.setTaskType("Official Task");
+        archivedto.setUserEmail(userEmail);
+        archivedto.setTask(task1);
+        System.out.println(archivedto.getTask());
+        producer.sendMessageToRabbitMq(archivedto);
+        deleteOfficialTask(userEmail,taskId);
+        flag=true;
+      }
+    }
+    return flag;
+  }
 
-    @Override
-    public boolean completePersonalTask(String userEmail, int taskId) throws UserNotFoundException, TaskNotFoundException {
-        boolean flag = false;
-        if (userRepository.findById(userEmail).isEmpty()) {
-            throw new UserNotFoundException();
-        }
-        User user = userRepository.findById(userEmail).get();
-        if (user.getPersonalTask() == null) {
-            throw new TaskNotFoundException();
-        } else {
-            List<Task> taskList = user.getPersonalTask();
-            Task task1 = taskList.stream().filter(a -> a.getTaskId() == taskId).collect(Collectors.toList()).get(0);
-            if (task1 == null) {
-                throw new TaskNotFoundException();
-            } else {
-                ArchiveDTO archivedto = new ArchiveDTO();
-                archivedto.setTaskType("Personal Task");
-                archivedto.setUserEmail(userEmail);
-                archivedto.setTask(task1);
-                producer.sendMessageToRabbitMq(archivedto);
-                deletePersonalTask(userEmail, taskId);
-                flag = true;
-            }
-        }
-        return flag;
+  public boolean completePersonalTask(String userEmail, int taskId) throws UserNotFoundException,TaskNotFoundException{
+    boolean flag=false;
+    if(userRepository.findById(userEmail).isEmpty()){
+      throw new UserNotFoundException();
     }
+    User user=userRepository.findById(userEmail).get();
+    if(user.getPersonalTask()==null){
+      throw new TaskNotFoundException();
+    }
+    else {
+      List<Task> taskList=user.getPersonalTask();
+      Task task1 = taskList.stream().filter(a -> a.getTaskId() == taskId).collect(Collectors.toList()).get(0);
+      if (task1==null){
+        throw new TaskNotFoundException();
+      }
+      else{
+        ArchiveDTO archivedto=new ArchiveDTO();
+        archivedto.setTaskType("Personal Task");
+        archivedto.setUserEmail(userEmail);
+        archivedto.setTask(task1);
+        producer.sendMessageToRabbitMq(archivedto);
+        deletePersonalTask(userEmail,taskId);
+        flag=true;
+      }
+    }
+    return flag;
+  }
 
     @Override
     public List<User> getAllUsers() throws UserNotFoundException {

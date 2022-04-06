@@ -1,10 +1,13 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginService } from '../login.service';
+import { TodoserviceService } from '../todoservice.service';
+import { Task } from 'src/app/task';
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -20,9 +23,17 @@ export class SidenavComponent implements OnInit {
   public mobile!: boolean;
   public isMenuInitOpen!: boolean;
 
+  userEmail: any;
+  service: any;
+  officialTask: any;
+  personalTask: any;
+  notiificationList!:Task[];
+  notifyLength!:number;
+  private timer: Observable<0> | undefined;
+
   constructor(private breakpointObserver: BreakpointObserver,
               private router: Router,
-              private _snackBar: MatSnackBar) { }
+              private _snackBar: MatSnackBar  , private loginservice:LoginService , private todoservice:TodoserviceService) { }
 
     private sidenav!: MatSidenav;
 
@@ -38,6 +49,17 @@ export class SidenavComponent implements OnInit {
   ngOnInit() {
     this.isMenuOpen = true;  // Open side menu by default
     this.title = 'Material Layout Demo';
+
+    this.userEmail=localStorage.getItem("user.Email");
+    this.timer = timer(1000);
+    this.timer.subscribe((t) => this.onTimeOut());
+  }
+
+  onTimeOut() {
+    this.userEmail=localStorage.getItem("user.Email");
+    this.todoservice.getNotifications(this.userEmail).subscribe(data => {this.notiificationList = data;
+      this.notifyLength=this.notiificationList.length;});
+   
   }
 
   ngDoCheck() {
@@ -64,7 +86,34 @@ export class SidenavComponent implements OnInit {
     /* To route to another page from here */
     // this.router.navigate(['/home']);
   }
+  logoutUser()
+    {
+    this.loginservice.logout()
+    // location.reload()
+    this.router.navigate(['./login'])
+    }
 
+    moveToTodo(){
+      this.router.navigate(['/todo'])
+    }
+
+    moveToArchive(){
+      this.router.navigate(['/archive'])
+    }
+
+    resetStorage(){
+      localStorage.removeItem('user.Email')
+    }
+
+    loggedIn(){
+      return localStorage.getItem('token')
+    }
+
+    moveToPendingTasks(){
+      this.router.navigate(['/pendingtask'])
+    }
+
+  
  
 }
 
