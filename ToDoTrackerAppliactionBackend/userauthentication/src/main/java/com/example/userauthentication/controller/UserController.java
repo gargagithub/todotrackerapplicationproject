@@ -72,10 +72,10 @@ public class UserController {
             return new ResponseEntity<>("try after some time",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//    @GetMapping("/api/v1/userservice/users")
-//    public  ResponseEntity<?>getAllUsers()
-//    {
-//        return new ResponseEntity<>(userService.getAllUser(),HttpStatus.OK);
-//    }
+    @GetMapping("/api/v1/userservice/users")
+    public  ResponseEntity<?>getAllUsers()
+    {
+        return new ResponseEntity<>(userService.getAllUser(),HttpStatus.OK);
+    }
 
 }

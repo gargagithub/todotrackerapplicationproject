@@ -16,6 +16,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TaskformComponent } from 'src/app/taskform/taskform.component';
 import { PuTaskFormComponent } from 'src/app/pu-task-form/pu-task-form.component';
 import { OuTaskFormComponent } from 'src/app/ou-task-form/ou-task-form.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-todo',
@@ -44,6 +45,7 @@ export class TodoComponent implements OnInit {
   officialbuttonDisabled: boolean = true;
   userEmail:any;
   personalbuttonDisabled: boolean = true;
+  getNgonInitSubscription!:any;
   taskform = new FormGroup({
     taskId: new FormControl(''),
     title: new FormControl('', [Validators.required]),
@@ -61,6 +63,9 @@ export class TodoComponent implements OnInit {
     console.log(this.userEmail);
     this.service.getOfficialTask(this.userEmail).subscribe(data => {this.officialTask = data});
     this.service.getPersonalTask(this.userEmail).subscribe(data => this.personalTask = data);
+
+      
+
   }
   get title() {
     return this.taskform.get('title');
@@ -273,10 +278,10 @@ export class TodoComponent implements OnInit {
   onCreate(){
     
     const dialogConfig=new MatDialogConfig();
-    dialogConfig.disableClose=true;
-    dialogConfig.autoFocus=true;
-    dialogConfig.width="45%";
-    this.dialog.open(TaskformComponent); 
+    dialogConfig.disableClose=false;
+    dialogConfig.autoFocus = true;
+    
+    this.dialog.open(TaskformComponent,dialogConfig); 
   }
   onEditPersonal(task1:any){
     this.service.populatePersonalForm(task1);
@@ -302,4 +307,5 @@ export class TodoComponent implements OnInit {
     dialogConfig.width="45%";
     this.dialog.open(OuTaskFormComponent); 
   }
+  
 }

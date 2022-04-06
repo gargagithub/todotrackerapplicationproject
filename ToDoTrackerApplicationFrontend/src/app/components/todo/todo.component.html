@@ -12,6 +12,8 @@
 <link
     href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Dancing+Script&family=Lobster&family=Pacifico&display=swap"
     rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- <app-navbar></app-navbar> -->
     <body>
@@ -34,7 +36,7 @@
                                 </h2>
                                 <p>Priority: {{task.taskPriority }}</p>
                                 <p>Date: {{task.taskDeadline | date:"MM/dd/yy"}}</p>
-                                <p>Time: {{task.taskDeadline | date:"hh:mm"}}</p>
+                                <p>Time: {{task.taskDeadline | date:"hh:mm aa"}}</p>
                             </div>
                         </div>
                         <ul class="sci">

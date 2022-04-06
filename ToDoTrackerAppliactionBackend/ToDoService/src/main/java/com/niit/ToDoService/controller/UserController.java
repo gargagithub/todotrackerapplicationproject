@@ -267,4 +267,18 @@ public class UserController {
         }
         return responseEntity;
     }
+
+    @PutMapping("/update/{userEmail}")
+    public ResponseEntity<?> updateUser(@RequestBody User user,@PathVariable String userEmail) throws UserNotFoundException {
+        try {
+            return new ResponseEntity<>(userService.updateUser(user,userEmail), HttpStatus.OK);
+        }
+        catch (UserNotFoundException u){
+            throw new UserNotFoundException();
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>("try after some time",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

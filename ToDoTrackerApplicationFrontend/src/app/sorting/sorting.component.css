@@ -52,11 +52,11 @@ section::after {
 	margin: 40px 0;
 }
 
-.container-fluid{
+/* .container-fluid{
 
-	/* background: #2e2e2e;  */
-	/* background: #2c2c2c; */
-}
+	background: #2e2e2e; 
+	background: #2c2c2c;
+} */
 .container .card {
 	position: relative;
 	width: 270px;
@@ -178,7 +178,7 @@ h2{
 h1 {
 	font-family: 'Noto Serif', serif;
 	text-align: center;
-	font-size: 2em;
+	font-size: x-large;
 	background-color: #333333;
 	color: white;
 }

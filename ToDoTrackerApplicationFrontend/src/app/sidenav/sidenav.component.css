@@ -5,7 +5,7 @@
   
   .sidenav-container {
     height: 92%;
-    position: relative;
+    position: fixed;
   }
   
   .sidenav-content {
@@ -13,7 +13,7 @@
   }
   
   .sidenav {
-    width: 250px;
+    width: 200px;
   }
   
   .sidenav .mat-toolbar {
@@ -47,3 +47,7 @@
   .active-icon {
     color: red;
   }
+
+  /* ******************************************* */
+  
+  

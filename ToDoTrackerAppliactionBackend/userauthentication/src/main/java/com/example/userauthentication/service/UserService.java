@@ -11,7 +11,7 @@ public interface UserService {
     User saveUser(User user) throws UserAlreadyExistException;
     User findByUserEmailAndPassword(String userEmail, String passWord)throws UserNotFoundException;
     User updateUser(User user,String userEmail) throws UserNotFoundException ;
-//    List<User>getAllUser();
+    List<User>getAllUser();
 
 
 }
