@@ -13,9 +13,15 @@
 </mat-menu>
       
     <button  mat-flat-button color="basic"  routerLink="./home" style="margin-right: 7px;">Home</button>
+<<<<<<< HEAD
     <button routerLink="login" mat-flat-button color="warn" style="margin-right: 7px;" *ngIf="!loggedIn()" >LOGIN</button>
 <button routerLink="registration" mat-flat-button color="accent" *ngIf="!loggedIn()">REGISTRATION</button>
 <button  mat-flat-button color="warn" *ngIf="loggedIn() " (click)=" moveToTodo()" style="margin-right: 7px;">TO DO</button>
+=======
+    <!-- <button routerLink="login" mat-flat-button color="warn" style="margin-right: 7px;" *ngIf="!loggedIn()" >LOGIN</button>
+<button routerLink="registration" mat-flat-button color="accent" *ngIf="!loggedIn()">REGISTRATION</button> -->
+<!-- <button  mat-flat-button color="warn" *ngIf="loggedIn() " (click)=" moveToTodo()" style="margin-right: 7px;">TO DO</button>
+>>>>>>> 2d89c358a95309afacf91e75a20d3fc29602ec43
 <button mat-raised-button (click)="moveToArchive()" color="warn" *ngIf="loggedIn()" style="margin-right: 7px;"> ARCHIVES</button>
 <button  mat-flat-button color="warn" *ngIf="loggedIn()" (click)="logoutUser() ;resetStorage() ">Logout</button>
 <button mat-raised-button routerLink="/pendingtasks"color="warn" *ngIf="loggedIn()" style="margin-right: 7px; margin-left: 7px;">Pending Tasks</button>
