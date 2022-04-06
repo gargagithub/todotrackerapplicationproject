@@ -1,0 +1,176 @@
+* {
+  margin: 0;
+  padding: 0;
+   /* background-image: url("https://mdbootstrap.com/img/new/fluid/city/018.jpg"); */
+  /*height: 100vh; */
+}
+
+ body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-size: cover;
+  background: #333333;
+  min-height: 100vh; 
+   /* background-image: url("https://mdbootstrap.com/img/new/fluid/city/018.jpg"); */
+  /* height: 100vh;  */
+ }  
+
+section::before {
+  /* content: ''; */
+   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  /* background: linear-gradient(#DA22FF, #9733EE);
+  clip-path: circle(30% at right 70%); */
+
+}
+
+section::after {
+  /* content: ''; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+   /* background: linear-gradient(#E55D87, #5FC3E4); */
+  /*clip-path: circle(20% at 10% 10%); */
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+
+.container-fluid{
+  margin-top: 1%;
+  /* background: #2e2e2e;  */
+  /* background: #2c2c2c; */
+}
+.container .card {
+  position: relative;
+  width: 270px;
+  height: 320px;
+   background: /*rgba(10, 10, 10, 0.05); background:*/ rgba(255, 255, 255, 0.05); 
+  margin: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  /* backdrop-filter: blur(10px); */
+}
+
+.container .card .content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: 0.5s;
+}
+
+.container .card:hover .content {
+  transform: translateY(-20px);
+}
+/* .row{
+  background: #161616;
+} */
+
+
+
+
+.container .card .content .contentBx h2 {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+  font-size: 18px;
+  text-align: center;
+  margin: 20px 0 10px;
+  line-height: 1.1em;
+}
+
+.container .card .content .contentBx h2 span {
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: initial;
+}
+
+.container .card .sci {
+  position: absolute;
+  bottom: 50px;
+  display: flex;
+}
+
+.container .card .sci li {
+  list-style: none;
+  margin: 0 10px;
+  transform: translateY(40px);
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.container .card:hover .sci li {
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+.container .card .sci li a {
+  color: #fff;
+  font-size: 20px;
+}
+
+.container .card .content .contentBx p{
+  /* color: #fff; */
+  text-align: center;
+  color: #fff; font-family: 'Satisfy', cursive;
+}
+
+#addbutton{
+
+  position: sticky;
+  margin-left: 80%;
+  margin-top: 10%;
+}
+
+p{
+  margin-top: 10%;
+  position:relative;
+}
+h2{
+  font-family: 'Noto Serif', serif;
+}
+
+
+
+.header {
+	/* padding: 10px; */
+	background: #333333;
+	color: #F1F1F1;
+	margin-top: 63px;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+	position: fixed;
+	top: 0;
+	width: 50%;
+	z-index: 80;
+
+}
+h1 {
+	font-family: 'Noto Serif', serif;
+	text-align: center;
+	font-size: 2em;
+	background-color: #333333;
+	color: white;
+}

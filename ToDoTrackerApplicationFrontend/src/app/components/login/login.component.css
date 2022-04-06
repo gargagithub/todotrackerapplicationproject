@@ -1,0 +1,63 @@
+/* .card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .example-container .mat-form-field + .mat-form-field {
+    margin-left: 9px;
+  }
+
+  .example-card {
+    max-width: 400px;
+
+  }
+
+  .full-width{
+    width: 300px;
+  }
+
+  .bodyback{
+    background-image:url('./pexels-ivan-samkov-7212857.jpg');
+    background-size: cover;
+    background-position: center;
+    
+  padding: 70px 20px 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  }
+  } */
+
+  /* ************************************ */
+  
+.card{
+  margin-top: 10px;
+  border: none;
+  width: 500px;
+  padding: 40px;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  background: rgb(170, 169, 169);
+  background: linear-gradient(90deg, rgb(119, 119, 121) 0%, rgb(97, 96, 96) 100%);
+}
+
+.card h1,h6{
+ color:rgb(7, 7, 7);
+}
+label{
+  color:rgb(8, 8, 8);
+ }
+ 
+
+ .bodyback{
+  background-image:url('./login2.jpg');
+  background-size: cover;
+  background-position: center;
+padding: 70px 20px 0;
+display: flex;
+flex-direction: column;
+height: 100%;
+ }

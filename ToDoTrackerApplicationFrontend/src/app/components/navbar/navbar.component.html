@@ -1,0 +1,53 @@
+
+ <mat-toolbar color="dark"  class="newColor" >
+ 
+    <!--<span>  <a mat-icon-button routerLink="./Dashboard"><h1> TODOApplication </h1> </a></span> -->
+    <div mat-card-avatar class="example-header-image"></div>
+    
+    <span class="example-space"></span>
+    
+<button mat-flat-buttonbtn  class="btn btn-success btn-sm"  [matMenuTriggerFor]="belowMenu" *ngIf="loggedIn()" matBadge={{notifyLength}} matBadgePosition="before" matBadgeColor="accent" style="margin-right: 7px;"><i class="fa fa-bell"></i></button>
+<mat-menu #belowMenu="matMenu" yPosition="below">
+  <button *ngFor="let task of notiificationList" mat-menu-item>hello,you have <b>{{task.taskTitle}}</b> task pending</button>
+
+</mat-menu>
+      
+    <button  mat-flat-button color="basic"  routerLink="./home" style="margin-right: 7px;">Home</button>
+    <button routerLink="login" mat-flat-button color="warn" style="margin-right: 7px;" *ngIf="!loggedIn()" >LOGIN</button>
+<button routerLink="registration" mat-flat-button color="accent" *ngIf="!loggedIn()">REGISTRATION</button>
+<button  mat-flat-button color="warn" *ngIf="loggedIn() " (click)=" moveToTodo()" style="margin-right: 7px;">TO DO</button>
+<button mat-raised-button (click)="moveToArchive()" color="warn" *ngIf="loggedIn()" style="margin-right: 7px;"> ARCHIVES</button>
+<button  mat-flat-button color="warn" *ngIf="loggedIn()" (click)="logoutUser() ;resetStorage() ">Logout</button>
+<button mat-raised-button routerLink="/pendingtasks"color="warn" *ngIf="loggedIn()" style="margin-right: 7px; margin-left: 7px;">Pending Tasks</button>
+</mat-toolbar>
+
+    
+
+<!-- ********************************************F navbar******************************************************* -->
+  
+<!--<div class="page">
+    <header tabindex="0">Header</header>
+    <div id="nav-container">
+      <div class="bg"></div>
+      <div class="button" tabindex="0">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+
+
+      </div>
+      
+      <div id="nav-content" tabindex="0">
+        <ul>
+          <li><a href="#0"  >Home</a></li>
+          <li><a mat-button routerLink="/todo">TodoServices</a></li>
+          <li><a routerLink="/sorting">Pending</a></li>
+          <li><a routerLink="/sorting">Sorting</a></li>
+          <li><a routerLink="/archive">Archive</a></li>
+          <li><a></a></li>
+          
+          <li class="small"><a href="#0">Facebook</a><a href="#0">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>  -->

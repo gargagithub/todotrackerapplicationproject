@@ -1,0 +1,51 @@
+<!-- <h1 style="font-style:italic; color: rgb(253, 244, 113);">Add Task Here</h1>  -->
+             <mat-card class="mt-3" class="card">
+                <form [formGroup]="taskform">
+                    <div class="form-group" >
+
+                        <div class="example-container">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Task Title</mat-label>
+                                <input matInput placeholder="Enter Task" formControlName="title">
+                                <div *ngIf="title?.invalid&& title?.touched" class="alert alert-danger">title Is
+                                    Required..</div>
+                            </mat-form-field>
+                        </div>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Deadline</mat-label>
+                            <input matInput type="datetime-local" formControlName="deadline" #input
+                                (change)="onChange(input.value)" [(ngModel)]="values" min="{{min}}">
+                            <div *ngIf="deadline?.invalid && deadline?.touched" class="alert alert-danger">Deadline
+
+                                Is
+                                Required..</div>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Priority</mat-label>
+                            <mat-select formControlName="priority">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let state of priorityList" [value]="state">{{state}}</mat-option>
+                            </mat-select>
+                            <div *ngIf="priority?.invalid && priority?.touched" class="alert alert-danger">Priority
+                                Is Required...
+                            </div>
+                        </mat-form-field>
+
+                        <div class="example-container">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Description</mat-label>
+                                <input matInput placeholder="Enter Description" formControlName="description">
+                                <div *ngIf="description?.invalid&& description?.touched" class="alert alert-danger">
+                                    Description Is
+                                    Required..</div>
+                            </mat-form-field>
+                        </div>
+                        <button mat-raised-button color="primary" class="mt-2 ml-5"  (click)="isUpdatedOfficialTask();resetButton() "
+                        [disabled]="!taskform.valid">UPDATE OFFICIAL TASK</button>
+                            <button mat-raised-button color="warn" class="mt-2 ml-2" style="margin-left: 2%;" (click)="resetButton() "
+                            [disabled]="!taskform.valid">RESET</button>
+                    </div>
+                </form>
+            </mat-card>

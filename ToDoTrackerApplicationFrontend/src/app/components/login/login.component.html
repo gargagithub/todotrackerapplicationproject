@@ -1,0 +1,32 @@
+
+ <!-- <app-navbar></app-navbar> -->
+
+ <body class="bodyback">
+ <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="text-center">
+          <h1>LOGIN</h1>
+        </div>
+            <form class="form-group">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input [(ngModel)]="credentials.userEmail" name="userEmail"  placeholder="email@example.com" [formControl]="email" required class="form-control" >
+                <mat-error *ngIf="email.invalid && email.touched  ">{{getErrorMessage()}}</mat-error>
+                <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
+                </div> 
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input   [(ngModel)]="credentials.password" name="password" placeholder="Password" [formControl]="password" matInput [type]="hide ? 'password' : 'text'" class="form-control"  [attr.aria-label]="'Hide password'">
+              <mat-error *ngIf="password.invalid && password.touched  ">{{getPasswordErrorMessage()}}</mat-error>
+              </div>
+              
+            </form>
+            <button type="submit" class="btn btn-danger" [disabled]="email.invalid || password.invalid"   (click)="saveUserEmail(); onSubmit()">Login</button>
+        </div>
+    </div>
+  </div>
+</div>
+</body>
+

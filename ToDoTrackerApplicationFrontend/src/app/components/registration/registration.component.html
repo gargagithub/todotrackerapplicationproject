@@ -1,0 +1,49 @@
+
+<!-- <app-navbar></app-navbar> -->
+<body style="background-image: url(./pexels-ivan-samkov-7212857\ \(1\).jpg);" >
+
+
+<!-- 
+*********************************** -->
+
+<div class="container" class="bodyback" >
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card" style="margin-top: 40px;">
+        
+            <form [formGroup]="register">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input matInput placeholder="email@example.com" [formControl]="email" class="form-control" required >
+                   <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+
+                </div> 
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">FirstName</label>
+                <input matInput formControlName="FirstName" id="FirstName" placeholder="Enter FirstName" class="form-control">
+               <span class="text-danger" *ngIf="register.controls['FirstName'].dirty && register.hasError('required','FirstName')">FirstName is required</span>
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" >LastName</label>
+                <input matInput formControlName="LastName" id="LastName" placeholder="Enter LastName" class="form-control">
+                <span class="text-danger" *ngIf="register.controls['LastName'].dirty && register.hasError('required','LastName')">LastName is required</span>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" >Password</label>
+                <input matInput formControlName="Password" id="Password" placeholder="Enter Password" [type]="hide ? 'password' : 'text'" class="form-control">
+                <span class="text-danger" *ngIf="register.controls['Password'].dirty && register.hasError('required','Password')">Password is required</span>
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Mobile Number</label>
+                <input type="tel" formControlName="mobileNo" id="mobileNo" matInput placeholder="555-555-1234" class="form-control">
+                <span class="text-danger" *ngIf="register.controls['mobileNo'].dirty && register.hasError('required','mobileNo')">MobileNo is required</span>
+              </div>
+              <button type="submit"  class="btn btn-danger" [disabled]="register.invalid"  (click)="registerNow()"> Register</button>
+            </form>
+            
+        </div>
+      </div>
+    </div>
+</div> 
