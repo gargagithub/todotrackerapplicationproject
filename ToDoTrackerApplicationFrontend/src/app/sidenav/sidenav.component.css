@@ -5,7 +5,7 @@
   
   .sidenav-container {
     height: 92%;
-    position: fixed;
+    position: relative;
   }
   
   .sidenav-content {
@@ -13,7 +13,7 @@
   }
   
   .sidenav {
-    width: 200px;
+    width: 180px;
   }
   
   .sidenav .mat-toolbar {
@@ -45,18 +45,47 @@
   }
   
   .active-icon {
-    color: red;
+    color: rgb(211, 70, 70);
   }
 
-<<<<<<< HEAD
-  /* ******************************************* */
-  
-  
-=======
-  .newColor{
-    background-color: #000;
-    position: fixed;
-     top: 0;
-     z-index:1000;
+  /* ************************ */
+
+  .mat-toolbar{
+    background-color: rgb(39, 37, 37);
+    z-index: 5;
+    position: sticky;
   }
->>>>>>> 39a94402fc258b383b06ba0bc07d76ddb9923fbf
+
+  .mat-sidenav-content{
+    /* background-color: rgb(34, 185, 185); */
+    background-image:url('./login2.jpg');
+    background-size: cover;
+  background-position: center;
+  }
+
+   .mat-sidenav {
+    /* height: calc(100vh - 65px); */
+    background-color:  #b7e1e4;
+    /* background-color:  #acacac; */
+}
+ 
+ /*.mat-sidenav {
+  margin: 16px;
+  width: 200px;
+  border-right: none;
+  background: #002B5C;
+  color: white;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.content {
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: lightgray;
+} */

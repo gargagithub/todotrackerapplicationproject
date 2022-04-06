@@ -114,22 +114,22 @@ export class OuTaskFormComponent implements OnInit {
     this.service.updateOfficialTask(task, this.userEmail, task.taskId).subscribe(data =>{
       
       this.toast.success({ detail: " Success Message", summary: "OfficialTask is updated successfully", duration: 5000 })
-      this.onClose();
-      this.ngOnInit();
+      
       
     },
     err => {
       this.toast.error({ detail: "Error Message", summary: "OfficialTask is not updated", duration: 5000 })
     });
     console.log("taskform values ", this.taskform.value);
-    this.taskform.reset();
+    this.onClose();
 
   }
 
   onClose(){
-    this.taskform.reset();
     this.dialogRef.close();
-    window.location.reload();
+    this.taskform.reset();
+    
+    // window.location.reload();
     
   }
 }

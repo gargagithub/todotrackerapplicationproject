@@ -55,8 +55,8 @@ export class UpdateUserComponent implements OnInit {
     console.log(user.password)
     user.mobileNo=this.update.value.mobileNo;
     console.log(user.mobileNo)
-   this.service.updateUserdetails(user,this.userEmail).subscribe(result=>{this.toast.success({detail:"successMessage", summary:"Update is successfully",duration:5500})
-   this.ngOnInit
+   this.service.updateUserdetails(user,this.userEmail).subscribe(result=>{this.toast.success({detail:"successMessage", summary:"Details are Updated",duration:5500})
+
    this.onClose();
    this.router.navigate(['/todo'])
  },err => {

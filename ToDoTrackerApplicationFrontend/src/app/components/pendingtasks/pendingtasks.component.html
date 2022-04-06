@@ -23,17 +23,20 @@
                             <p>Date: {{task.taskDeadline }}</p>
                         </div>
                     </div>
-                    <!-- <ul class="sci">
+                    <ul class="sci">
                         <li>
-                            <button type="button" class="btn btn-outline-danger" (click)="isDeletedOfficialTask(user.userEmail,task.taskId)" >delete</button>
+                            <button type="button" class="btn btn-outline-danger"
+                                (click)="isDeletedOfficialTask(userEmail,task.taskId)">delete</button>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-outline-info" (click)="loadOfficialTaskToUpdate(user.userEmail,task.taskId); officialbuttonDisabled=false ;personalbuttonDisabled=true; addbuttonhidden=true">edit</button>
+                            <button type="button" class="btn btn-outline-info"
+                                (click)="onEditOfficial(task); onCreateOfficial();">edit</button>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-outline-success" (click)="completeOfficialTask(task.taskId)">Done</button>
+                            <button type="button" class="btn btn-outline-success"
+                                (click)="completeOfficialTask(task.taskId)">Done</button>
                         </li>
-                    </ul> -->
+                    </ul>
                 </div>
                 </div>
         </section>
@@ -55,17 +58,20 @@
                         </div>
     
                     </div>
-                    <!-- <ul class="sci">
+                    <ul class="sci">
                         <li>
-                            <button type="button" class="btn btn-outline-danger" (click)="isDeletedPersonalTask(user.userEmail,task1.taskId)">delete</button>
+                            <button type="button" class="btn btn-outline-danger"
+                                (click)="isDeletedPersonalTask(userEmail,task1.taskId)">delete</button>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-outline-info"(click)="loadPersonalTaskToUpdate(user.userEmail,task1.taskId); personalbuttonDisabled=false;officialbuttonDisabled=true;addbuttonhidden=true">edit</button>
+                            <button type="button" class="btn btn-outline-info"
+                                (click)="onEditPersonal(task1); onCreatePersonal();">edit</button>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-outline-success" (click)="completePersonalTask(task1.taskId)">Done</button>
+                            <button type="button" class="btn btn-outline-success"
+                                (click)="completePersonalTask(task1.taskId)">Done</button>
                         </li>
-                    </ul> -->
+                    </ul>
                 </div>
                 </div>
         </section>

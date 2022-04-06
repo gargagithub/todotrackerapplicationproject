@@ -16,7 +16,6 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TaskformComponent } from 'src/app/taskform/taskform.component';
 import { PuTaskFormComponent } from 'src/app/pu-task-form/pu-task-form.component';
 import { OuTaskFormComponent } from 'src/app/ou-task-form/ou-task-form.component';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-todo',
@@ -43,9 +42,8 @@ export class TodoComponent implements OnInit {
   personalTaskById: any;
   addbuttonhidden: boolean = false;
   officialbuttonDisabled: boolean = true;
-  userEmail:any;
+  userEmail: any;
   personalbuttonDisabled: boolean = true;
-  getNgonInitSubscription!:any;
   taskform = new FormGroup({
     taskId: new FormControl(''),
     title: new FormControl('', [Validators.required]),
@@ -54,18 +52,20 @@ export class TodoComponent implements OnInit {
     description: new FormControl('', [Validators.required]),
   });
 
-  constructor(private service: TodoserviceService, private loginservice: LoginService, private toast: NgToastService, 
-    private router: Router, private dialog:MatDialog) { }
+  constructor(private service: TodoserviceService, private loginservice: LoginService, private toast: NgToastService,
+    private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.pastDateTime();
-    this.userEmail=localStorage.getItem("user.Email");
+    this.userEmail = localStorage.getItem("user.Email");
     console.log(this.userEmail);
-    this.service.getOfficialTask(this.userEmail).subscribe(data => {this.officialTask = data});
+    this.service.refreshNeeded.subscribe(() =>{this.getAllOf();});
+    this.getAllOf();
+
+  }
+  getAllOf() {
+    this.service.getOfficialTask(this.userEmail).subscribe(data => { this.officialTask = data });
     this.service.getPersonalTask(this.userEmail).subscribe(data => this.personalTask = data);
-
-      
-
   }
   get title() {
     return this.taskform.get('title');
@@ -82,9 +82,9 @@ export class TodoComponent implements OnInit {
 
   resetButton() {
     this.taskform.reset();
-    this.addbuttonhidden=false;
-    this.officialbuttonDisabled=true;
-    this.personalbuttonDisabled=true;
+    this.addbuttonhidden = false;
+    this.officialbuttonDisabled = true;
+    this.personalbuttonDisabled = true;
   }
   pastDateTime() {
     console.log("hello")
@@ -111,7 +111,7 @@ export class TodoComponent implements OnInit {
     var selectedDate: any = new Date(value).getTime();
 
     if (selectedDate < presentDate) {
-      this.taskform.value.deadline= ""
+      this.taskform.value.deadline = ""
     }
   }
 
@@ -148,7 +148,7 @@ export class TodoComponent implements OnInit {
   //   this.service.savePersonalTask(task, this.userEmail).subscribe(data =>{
   //     this.ngOnInit();
   //     this.toast.success({ detail: " Success Message", summary: "PersonalTask is added successfully", duration: 5000 })
-      
+
   //   },
   //   err => {
   //     this.toast.error({ detail: "Error Message", summary: "PersonalTask is not added", duration: 5000 })
@@ -160,26 +160,26 @@ export class TodoComponent implements OnInit {
   isDeletedOfficialTask(userEmail: any, id: any) {
     console.log(this.user.userEmail);
     console.log(id);
-    this.service.deleteOfficialTask(this.userEmail, id).subscribe(data =>{
+    this.service.deleteOfficialTask(this.userEmail, id).subscribe(data => {
       this.toast.success({ detail: " Success Message", summary: "OfficialTask is deleted successfully", duration: 5000 })
       this.ngOnInit();
     },
-    err => {
-      this.toast.error({ detail: "Error Message", summary: "OfficialTask is not deleted", duration: 5000 })
-    });
+      err => {
+        this.toast.error({ detail: "Error Message", summary: "OfficialTask is not deleted", duration: 5000 })
+      });
 
   }
 
   isDeletedPersonalTask(userEmail: any, id: any) {
-    console.log(this.user.userEmail);
+    console.log(this.userEmail);
     console.log(id);
-    this.service.deletePersonalTask(this.userEmail, id).subscribe(data =>{
+    this.service.deletePersonalTask(this.userEmail, id).subscribe(data => {
       this.toast.success({ detail: " Success Message", summary: "PersonalTask is deleted successfully", duration: 5000 })
       this.ngOnInit();
     },
-    err => {
-      this.toast.error({ detail: "Error Message", summary: "PersonalTask is not deleted", duration: 5000 })
-    });
+      err => {
+        this.toast.error({ detail: "Error Message", summary: "PersonalTask is not deleted", duration: 5000 })
+      });
 
   }
 
@@ -195,7 +195,7 @@ export class TodoComponent implements OnInit {
   //   console.log(task.taskId)
 
   //   this.service.updateOfficialTask(task, this.userEmail, task.taskId).subscribe(data =>{
-      
+
   //     this.toast.success({ detail: " Success Message", summary: "OfficialTask is updated successfully", duration: 5000 })
   //     this.ngOnInit();
   //   },
@@ -238,7 +238,7 @@ export class TodoComponent implements OnInit {
   //     this.taskform.controls["priority"].setValue(this.officialTaskById.taskPriority);
   //     this.taskform.controls["description"].setValue(this.officialTaskById.taskDescription);
   //   });
-    
+
   // }
 
   // loadPersonalTaskToUpdate(userEmail: any, taskId: any) {
@@ -249,63 +249,62 @@ export class TodoComponent implements OnInit {
   //     this.taskform.controls["deadline"].setValue(this.personalTaskById.taskDeadline);
   //     this.taskform.controls["priority"].setValue(this.personalTaskById.taskPriority);
   //     this.taskform.controls["description"].setValue(this.personalTaskById.taskDescription);
-      
+
   //   });
   // }
 
-  completeOfficialTask(taskId:any){
-    this.service.completedOfficialTask(this.userEmail,taskId).subscribe(data =>{
+  completeOfficialTask(taskId: any) {
+    this.service.completedOfficialTask(this.userEmail, taskId).subscribe(data => {
       this.toast.success({ detail: "Task is Completed", summary: "Moved to Archive", duration: 5000 })
       this.ngOnInit();
-  
+
     },
-    err => {
-      this.toast.error({ detail: "Error Message", summary: "Faced issue to Complete Task", duration: 5000 })
-    });
+      err => {
+        this.toast.error({ detail: "Error Message", summary: "Faced issue to Complete Task", duration: 5000 })
+      });
   }
 
-  completePersonalTask(taskId:any){
-    this.service.completedPersonalTask(this.userEmail,taskId).subscribe(data =>{
+  completePersonalTask(taskId: any) {
+    this.service.completedPersonalTask(this.userEmail, taskId).subscribe(data => {
       this.toast.success({ detail: "Task is Completed", summary: "Moved to Archive", duration: 5000 })
       this.ngOnInit();
-     
+
     },
-    err => {
-      this.toast.error({ detail: "Error Message", summary: "Faced issue to Complete Task", duration: 5000 })
-    });
+      err => {
+        this.toast.error({ detail: "Error Message", summary: "Faced issue to Complete Task", duration: 5000 })
+      });
   }
 
-  onCreate(){
-    
-    const dialogConfig=new MatDialogConfig();
-    dialogConfig.disableClose=false;
+  onCreate() {
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    
-    this.dialog.open(TaskformComponent,dialogConfig); 
+    dialogConfig.width = "45%";
+    this.dialog.open(TaskformComponent);
   }
-  onEditPersonal(task1:any){
+  onEditPersonal(task1: any) {
     this.service.populatePersonalForm(task1);
     console.log(task1);
   }
-  onEditOfficial(task:any){
+  onEditOfficial(task: any) {
     this.service.populateOfficialForm(task);
     console.log(task);
   }
-  onCreatePersonal(){
-    
-    const dialogConfig=new MatDialogConfig();
-    dialogConfig.disableClose=true;
-    dialogConfig.autoFocus=true;
-    dialogConfig.width="45%";
-    this.dialog.open(PuTaskFormComponent); 
+  onCreatePersonal() {
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "45%";
+    this.dialog.open(PuTaskFormComponent);
   }
-  onCreateOfficial(){
-    
-    const dialogConfig=new MatDialogConfig();
-    dialogConfig.disableClose=true;
-    dialogConfig.autoFocus=true;
-    dialogConfig.width="45%";
-    this.dialog.open(OuTaskFormComponent); 
+  onCreateOfficial() {
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "45%";
+    this.dialog.open(OuTaskFormComponent);
   }
-  
 }

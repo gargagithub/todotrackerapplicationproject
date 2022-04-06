@@ -27,8 +27,8 @@ export class PuTaskFormComponent implements OnInit {
   personalTaskById: any;
   addbuttonhidden: boolean = false;
   officialbuttonDisabled: boolean = true;
-  userEmail:any;
-  forFillingForm:any;
+  userEmail: any;
+  forFillingForm: any;
   personalbuttonDisabled: boolean = true;
   taskform = new FormGroup({
     taskId: new FormControl(''),
@@ -39,19 +39,19 @@ export class PuTaskFormComponent implements OnInit {
   });
 
   constructor(private service: TodoserviceService, private loginservice: LoginService, private toast: NgToastService,
-     private router: Router,private dialogRef:MatDialogRef<PuTaskFormComponent>) { }
+    private router: Router, private dialogRef: MatDialogRef<PuTaskFormComponent>) { }
 
   ngOnInit(): void {
     this.pastDateTime();
-    this.userEmail=localStorage.getItem("user.Email");
+    this.userEmail = localStorage.getItem("user.Email");
     console.log(this.userEmail);
-    this.forFillingForm=this.service.sendPopulatedData();
+    this.forFillingForm = this.service.sendPopulatedData();
     console.log(this.forFillingForm);
-    
+
     this.taskform.controls["title"].setValue(this.forFillingForm.taskTitle);
-      this.taskform.controls["deadline"].setValue(this.forFillingForm.taskDeadline);
-      this.taskform.controls["priority"].setValue(this.forFillingForm.taskPriority);
-      this.taskform.controls["description"].setValue(this.forFillingForm.taskDescription);
+    this.taskform.controls["deadline"].setValue(this.forFillingForm.taskDeadline);
+    this.taskform.controls["priority"].setValue(this.forFillingForm.taskPriority);
+    this.taskform.controls["description"].setValue(this.forFillingForm.taskDescription);
   }
 
   get title() {
@@ -69,9 +69,6 @@ export class PuTaskFormComponent implements OnInit {
 
   resetButton() {
     this.taskform.reset();
-    this.addbuttonhidden=false;
-    this.officialbuttonDisabled=true;
-    this.personalbuttonDisabled=true;
   }
   pastDateTime() {
     console.log("hello")
@@ -98,12 +95,12 @@ export class PuTaskFormComponent implements OnInit {
     var selectedDate: any = new Date(value).getTime();
 
     if (selectedDate < presentDate) {
-      this.taskform.value.deadline= ""
+      this.taskform.value.deadline = ""
     }
   }
 
   isUpdatedPersonalTask() {
-    
+
     let task = new Task();
     task.taskId = this.forFillingForm.taskId;
     task.taskTitle = this.taskform.value.title;
@@ -112,22 +109,23 @@ export class PuTaskFormComponent implements OnInit {
     task.taskDescription = this.taskform.value.description;
     task.taskDeadline = this.taskform.value.deadline;
     console.log(task.taskId)
-    this.service.updatePersonalTask(task, this.userEmail, task.taskId).subscribe(data =>{
+    this.service.updatePersonalTask(task, this.userEmail, task.taskId).subscribe(data => {
       this.toast.success({ detail: " Success Message", summary: "PersonalTask is updated successfully", duration: 5000 })
-      
-      this.onClose();
+
+
     },
-    err => {
-      this.toast.error({ detail: "Error Message", summary: "PersonalTask is not updated", duration: 5000 })
-    });
+      err => {
+        this.toast.error({ detail: "Error Message", summary: "PersonalTask is not updated", duration: 5000 })
+      });
     console.log("taskform values ", this.taskform.value);
-    this.taskform.reset();
+    this.onClose();
 
   }
-  onClose(){
-    this.taskform.reset();
+  onClose() {
     this.dialogRef.close();
-    window.location.reload();
-    
+    this.taskform.reset();
+
+    // window.location.reload();
+
   }
 }

@@ -60,9 +60,6 @@ export class TaskformComponent implements OnInit {
 
   resetButton() {
     this.taskform.reset();
-    this.addbuttonhidden=false;
-    this.officialbuttonDisabled=true;
-    this.personalbuttonDisabled=true;
   }
   pastDateTime() {
     console.log("hello")
@@ -89,7 +86,7 @@ export class TaskformComponent implements OnInit {
     var selectedDate: any = new Date(value).getTime();
 
     if (selectedDate < presentDate) {
-      this.taskform.value.deadline= ""
+      this.taskform.value.deadline= null;
     }
   }
 
@@ -106,18 +103,12 @@ export class TaskformComponent implements OnInit {
 
     this.service.saveOfficialTask(task, this.userEmail).subscribe(data => { 
       this.toast.success({ detail: " Success Message", summary: "OfficiaTtask is added successfully", duration: 5000 })
-      this.router.navigate(['/todo'])
-  .then(() => {
-    window.location.reload();
-  });
-      // this.ngOnInit();
-      // this.onClose();
-      // this.router.navigate(['./todo'])
+      
     },
       err => {
         this.toast.error({ detail: "Error Message", summary: "OfficialTask is not added", duration: 5000 })
       });
-    
+    this.onClose();
   }
 
   saveToPersonalTask() {
@@ -137,8 +128,8 @@ export class TaskformComponent implements OnInit {
     err => {
       this.toast.error({ detail: "Error Message", summary: "PersonalTask is not added", duration: 5000 })
     });
-    this.taskform.reset();
 
+this.onClose();
   }
 
   isUpdatedOfficialTask() {
@@ -207,17 +198,11 @@ export class TaskformComponent implements OnInit {
       this.taskform.controls["description"].setValue(this.personalTaskById.taskDescription);
     });
   }
-  todoNg:any;
   onClose(){
-    
-    
     this.dialogRef.close();
-    this.router.navigate(['/todo']);
     this.taskform.reset();
-    // window.location.reload();
-    // this.service.getNgOninit();
-    // TodoComponent.ngOnInit();
     
+    // window.location.reload();
     
   }
    

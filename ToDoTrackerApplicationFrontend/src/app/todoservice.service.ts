@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Observable, Subject } from 'rxjs';
-
+import { Subject, tap } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 import { Task } from './task';
 
 @Injectable({
@@ -12,13 +12,27 @@ export class TodoserviceService {
   
   constructor(private http:HttpClient) { }
 
+  private refreshNeeded$= new Subject<void>();
+  get refreshNeeded(){
+    return this.refreshNeeded$;
+  }
   saveOfficialTask(task:any,userEmail:any){
     console.log("serviceTask"+ task.value);
-    return this.http.post('http://localhost:9000/api/v2/user/officialTask/'+userEmail,task);
+    return this.http.post('http://localhost:9000/api/v2/user/officialTask/'+userEmail,task)
+                    .pipe(
+                      tap(()=>{
+                        this.refreshNeeded$.next();
+                      })
+                    );
   }
   savePersonalTask(task:any,userEmail:any){
     console.log("serviceTask"+ task.value);
-    return this.http.post('http://localhost:9000/api/v2/user/personalTask/'+userEmail,task);
+    return this.http.post('http://localhost:9000/api/v2/user/personalTask/'+userEmail,task)
+    .pipe(
+      tap(()=>{
+        this.refreshNeeded$.next();
+      })
+    );
   }
 
   getOfficialTask(user:any){
@@ -36,10 +50,20 @@ export class TodoserviceService {
   }
 
   updateOfficialTask(task:any,userEmail:any,taskId:any){
-    return this.http.put("http://localhost:9000/api/v2/user/officialTask/"+userEmail+"/"+taskId,task);
+    return this.http.put("http://localhost:9000/api/v2/user/officialTask/"+userEmail+"/"+taskId,task)
+    .pipe(
+      tap(()=>{
+        this.refreshNeeded$.next();
+      })
+    );
   }
   updatePersonalTask(task:any,userEmail:any,taskId:any){
-    return this.http.put("http://localhost:9000/api/v2/user/personalTask/"+userEmail+"/"+taskId,task);
+    return this.http.put("http://localhost:9000/api/v2/user/personalTask/"+userEmail+"/"+taskId,task)
+    .pipe(
+      tap(()=>{
+        this.refreshNeeded$.next();
+      })
+    );
   }
   
   getOfficialTaskById(userEmail:any,taskId:any){
@@ -89,6 +113,4 @@ export class TodoserviceService {
   sendPopulatedOfficialData(){
     return this.populateTask;
   }
-
-
 }

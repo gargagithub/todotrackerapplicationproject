@@ -44,11 +44,17 @@ export class SortingComponent implements OnInit {
 
   ngOnInit(): void {
     this.pastDateTime();
-    this.userEmail=localStorage.getItem("user.Email");
+    this.userEmail = localStorage.getItem("user.Email");
     console.log(this.userEmail);
+    this.service.refreshNeeded.subscribe(() =>{this.getAllOf();});
+    this.getAllOf();
+   
+  }  
+  getAllOf(){
     this.service.sortByPriorityOfOfficialTask(this.userEmail).subscribe(data=>this.officialTask=data);
     this.service.sortByPriorityOfPersonalTask(this.userEmail).subscribe(data=>this.personalTask=data);
-  }  get title() {
+  }
+  get title() {
     return this.taskform.get('title');
   };
   get deadline() {
