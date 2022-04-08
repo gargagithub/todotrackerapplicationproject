@@ -3,7 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { LoginComponent } from '../components/login/login.component';
 import { User } from '../components/user';
+import { LoginService } from '../login.service';
 import { TodoserviceService } from '../todoservice.service';
 
 @Component({
@@ -12,7 +14,7 @@ import { TodoserviceService } from '../todoservice.service';
   styleUrls: ['./update-user.component.css']
 })
 export class UpdateUserComponent implements OnInit {
-
+userDetails:any;
   userEmail:any;
   update=new FormGroup({
     FirstName:new FormControl('',[Validators.required]),
@@ -24,10 +26,18 @@ export class UpdateUserComponent implements OnInit {
    
    hide=false;
  
-   constructor(private service:TodoserviceService, private router: Router, private toast : NgToastService, private dialog:MatDialog,private dialogRef:MatDialogRef<UpdateUserComponent>) { }
+   constructor(private service:TodoserviceService, private router: Router, private toast : NgToastService, private dialog:MatDialog,
+    private dialogRef:MatDialogRef<UpdateUserComponent>,private loginservice:LoginService) { }
  
    ngOnInit(): void {
     this.userEmail=localStorage.getItem("user.Email");
+    console.log(this.userEmail);
+    // this.loginservice.getUserByEmail(this.userEmail).subscribe(data=>{this.userDetails=data})
+    // console.log(this.userDetails);
+    // this.update.controls["FirstName"].setValue(this.userDetails.firstName);
+    // this.update.controls["LastName"].setValue(this.userDetails.lastName);
+    // this.update.controls["Password"].setValue(this.userDetails.password);
+    // this.update.controls["mobileNo"].setValue(this.userDetails.mobileNo);
    }
  
  get FirstName(){

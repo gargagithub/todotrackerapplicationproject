@@ -52,6 +52,9 @@ getToken(){
   return localStorage.getItem("token")
 }
 
+  getUserByEmail(userEmail:any){ 
+    return this.http.get("http://localhost:9000/api/v1/userservice/users/"+userEmail);
+  }
 }
 
 
