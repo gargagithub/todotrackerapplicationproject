@@ -1,0 +1,107 @@
+/* @import url(https://fonts.googleapis.com/css?family=Roboto:100);
+
+body
+{
+    background: #212121;
+    font-family: Roboto, Arial;
+}
+.colors
+{
+  position: absolute;
+  left:5em;
+  top:10%;
+  z-index: 1;
+}
+.colors li
+{
+  float: left;
+  margin: 0 10px 0 0;
+  width:30px;
+  height:30px;
+}
+.c1 { background-color: rgb(0, 77, 100);}
+.c2 { background-color: rgb(165, 143, 118);}
+.c3 { background-color: rgb(235, 91, 57);}
+.hero
+{
+    height: 40em;
+    background: url(http://wallpoper.com/images/00/34/14/30/mountains-clouds_00341430.jpg) no-repeat center;
+    background-size: cover;
+    position: relative;
+}
+.tint
+{
+    content: '';
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 77, 100, .6);
+}
+.claim
+{
+  color:#dbdbdb;
+  font-size:2.5em;
+  padding: 22% 7em 0 2em;
+  position: relative;
+ 
+} */
+
+body{
+    /* z-index: 1000; */
+    background-color: rgba(0, 77, 100);
+    background-size: cover;
+    background-position: center;
+    height: 504px;
+}
+
+.hero{
+  text-align: center;
+  font-size:60px;
+  font-family: 'Anton', sans-serif;
+  /* color: rgb(165, 143, 118); */
+  /* color: rgb(235, 91, 57); */
+  color: #f0c10f;
+  word-spacing: 10px;
+  padding-top: 20px;
+}
+
+.para{
+  text-align: center;
+  color: #fff;
+ margin-top: 35px;
+
+}
+
+.phone{
+  text-align: center;
+  margin-bottom: 10px;
+  font-size:larger;
+  color: #81d1b6;
+}
+
+.para p{
+  font-size: 35px;
+  font-family: 'Maven Pro', sans-serif;
+}
+.para h1{
+  /* font-size: larger; */
+  
+  text-align: center;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#container {
+  position: relative;
+}
+
+#background {
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
