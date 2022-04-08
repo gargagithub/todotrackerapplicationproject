@@ -165,7 +165,7 @@ h2{
 	/* right: 500px; */
 	/* left: ; */
 	z-index: 100;
-
+border-radius: 50%;
 }
 /* The sticky class is added to the header with JS when it reaches its scroll position */
 .sticky {

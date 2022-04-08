@@ -28,7 +28,9 @@ export class SidenavComponent implements OnInit {
   personalTask: any;
   notiificationList!:Task[];
   notifyLength!:number;
-  private timer: Observable<0> | undefined;
+  imageSrc='assets/nTask-logo-32.png';
+  imageAlt='webSite'
+  private timer!: Observable<0>;
   constructor(private breakpointObserver: BreakpointObserver,
               private router: Router,
               private _snackBar: MatSnackBar  , private loginservice:LoginService , private todoservice:TodoserviceService,private dialog:MatDialog) { }
@@ -43,9 +45,12 @@ export class SidenavComponent implements OnInit {
     this.isMenuOpen = true;  // Open side menu by default
     this.title = 'Material Layout Demo';
     this.userEmail=localStorage.getItem("user.Email");
-    this.timer = timer(1000);
+    // this.todoservice.refreshNeeded.subscribe(()=>(this.onTimeOut()));
+    this.timer = timer(10000);
+    this.todoservice.refreshNeeded.subscribe(() =>{this.timer.subscribe((t) => this.onTimeOut());});
     this.timer.subscribe((t) => this.onTimeOut());
   }
+  
   onTimeOut() {
     this.userEmail=localStorage.getItem("user.Email");
     this.todoservice.getNotifications(this.userEmail).subscribe(data => {this.notiificationList = data;
@@ -96,4 +101,7 @@ export class SidenavComponent implements OnInit {
     onCreateUser() {
       this.dialog.open(UpdateUserComponent);
     }
+
+
+    
 }

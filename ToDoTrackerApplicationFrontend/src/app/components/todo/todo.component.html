@@ -34,17 +34,17 @@
                                 </h2>
                                 <p>Priority: {{task.taskPriority }}</p>
                                 <p>Date: {{task.taskDeadline | date:"MM/dd/yy"}}</p>
-                                <p>Time: {{task.taskDeadline | date:"hh:mm"}}</p>
+                                <p>Time: {{task.taskDeadline | date:"hh:mm aa"}}</p>
                             </div>
                         </div>
                         <ul class="sci">
                             <li>
                                 <button type="button" class="btn btn-outline-danger"
-                                    (click)="isDeletedOfficialTask(user.userEmail,task.taskId)">delete</button>
+                                    (click)="isDeletedOfficialTask(user.userEmail,task.taskId)">Delete</button>
                             </li>
                             <li>
                                 <button type="button" class="btn btn-outline-info"
-                                    (click)="onEditOfficial(task); onCreateOfficial();">edit</button>
+                                    (click)="onEditOfficial(task); onCreateOfficial();">Update</button>
                             </li>
                             <li>
                                 <button type="button" class="btn btn-outline-success"
@@ -71,18 +71,18 @@
                                 <p>Priority: {{task1.taskPriority }}</p>
 
                                 <p>Date: {{task1.taskDeadline | date:"MM/dd/yy"}}</p>
-                                <p>Time: {{task1.taskDeadline | date:"hh:mm"}}</p>
+                                <p>Time: {{task1.taskDeadline | date:"hh:mm aa"}}</p>
                             </div>
 
                         </div>
                         <ul class="sci">
                             <li>
                                 <button type="button" class="btn btn-outline-danger"
-                                    (click)="isDeletedPersonalTask(user.userEmail,task1.taskId)">delete</button>
+                                    (click)="isDeletedPersonalTask(user.userEmail,task1.taskId)">Delete</button>
                             </li>
                             <li>
                                 <button type="button" class="btn btn-outline-info"
-                                    (click)="onEditPersonal(task1); onCreatePersonal();">edit</button>
+                                    (click)="onEditPersonal(task1); onCreatePersonal();">Update</button>
                             </li>
                             <li>
                                 <button type="button" class="btn btn-outline-success"
@@ -97,6 +97,6 @@
         </div>
     </div>
 </div>
-<button type="button" class="fixedbutton btn btn-danger" (click)="onCreate()" id="addbutton"> <i class="fa fa-plus"></i></button>
-
+<button type="button" class="fixedbutton btn btn-danger" (click)="onCreate()" id="addbutton" style="position: fixed;"> <i class="fa fa-plus"></i></button>
+<!-- <button mat-mini-fab color="warn" class="fixedbutton"(click)="onCreate()" id="addbutton" style="  position: fixed; margin-bottom: -140px; z-index: 1000;"> <i class="fa fa-plus"></i></button> -->
 </body>

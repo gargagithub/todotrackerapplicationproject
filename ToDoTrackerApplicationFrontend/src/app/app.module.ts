@@ -46,6 +46,8 @@ import { OuTaskFormComponent } from './ou-task-form/ou-task-form.component';
 import {MatListModule} from '@angular/material/list';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { Router } from '@angular/router';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +70,8 @@ import { Router } from '@angular/router';
           PuTaskFormComponent,
           OuTaskFormComponent,
           
+          AboutUsComponent,
+                      ContactUsComponent
     // PendingtasksComponent
     
     

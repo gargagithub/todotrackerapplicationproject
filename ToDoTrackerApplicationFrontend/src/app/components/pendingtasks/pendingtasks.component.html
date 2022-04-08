@@ -20,21 +20,22 @@
                              <p hidden>{{task.taskId}}</p>
                             <h2>{{task.taskTitle}}<br><span>{{task.taskDescription}}</span></h2>
                             <p>Priority: {{task.taskPriority }}</p>
-                            <p>Date: {{task.taskDeadline }}</p>
+                            <p>Date: {{task.taskDeadline | date:"MM/dd/yy"}}</p>
+                                <p>Time: {{task.taskDeadline | date:"hh:mm aa"}}</p>
                         </div>
                     </div>
                     <ul class="sci">
                         <li>
                             <button type="button" class="btn btn-outline-danger"
-                                (click)="isDeletedOfficialTask(userEmail,task.taskId)">delete</button>
+                                (click)="isDeletedOfficialTask(userEmail,task.taskId)">Delete</button>
                         </li>
-                        <li>
+                        <!-- <li>
                             <button type="button" class="btn btn-outline-info"
-                                (click)="onEditOfficial(task); onCreateOfficial();">edit</button>
-                        </li>
+                                (click)="onEditOfficial(task); onCreateOfficial();">Update</button>
+                        </li> -->
                         <li>
                             <button type="button" class="btn btn-outline-success"
-                                (click)="completeOfficialTask(task.taskId)">Done</button>
+                                (click)="completeOfficialTask(task.taskId)">Complete</button>
                         </li>
                     </ul>
                 </div>
@@ -54,7 +55,8 @@
                     <p hidden>{{task1.taskId}}</p>
                             <p>Priority: {{task1.taskPriority }}</p>
     
-                                <p>Date & Time: {{task1.taskDeadline }}</p>
+                            <p>Date: {{task1.taskDeadline | date:"MM/dd/yy"}}</p>
+                            <p>Time: {{task1.taskDeadline | date:"hh:mm aa"}}</p>
                         </div>
     
                     </div>
@@ -63,13 +65,13 @@
                             <button type="button" class="btn btn-outline-danger"
                                 (click)="isDeletedPersonalTask(userEmail,task1.taskId)">delete</button>
                         </li>
-                        <li>
+                        <!-- <li>
                             <button type="button" class="btn btn-outline-info"
-                                (click)="onEditPersonal(task1); onCreatePersonal();">edit</button>
-                        </li>
+                                (click)="onEditPersonal(task1); onCreatePersonal();">Update</button>
+                        </li> -->
                         <li>
                             <button type="button" class="btn btn-outline-success"
-                                (click)="completePersonalTask(task1.taskId)">Done</button>
+                                (click)="completePersonalTask(task1.taskId)">Complete</button>
                         </li>
                     </ul>
                 </div>

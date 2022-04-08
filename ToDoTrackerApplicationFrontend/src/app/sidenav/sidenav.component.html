@@ -6,9 +6,10 @@
 
 
     <button mat-icon-button *ngIf="loggedIn()"  (click)="drawer.toggle();"><mat-icon routerLinkActive="active-icon">menu</mat-icon></button >
-
-   
-    <a routerLink="/home" style="text-decoration: none; color: #fff;"><span>TODO-Tracker</span></a>
+      <div class="logo">
+        <img src="assets/images/nTask-Logo-32.png"  />
+      </div>
+    <a routerLink="/home" style="text-decoration: none; color: #fff;"><span>TODO</span></a>
 
 
     <span class="toolbar-spacer "></span>
@@ -32,7 +33,7 @@
     <mat-menu #menu="matMenu">
       
       <button mat-menu-item>Welcome ({{userEmail}})</button>
-      <button mat-menu-item (click)=" onCreateUser();">update profile</button>
+      <button mat-menu-item (click)=" onCreateUser(); ">update profile</button>
       <button mat-menu-item (click)="logoutUser() ;resetStorage() " >Logout</button>
     </mat-menu>    
     </mat-toolbar-row>
@@ -41,20 +42,22 @@
 
   </mat-toolbar>
 
-<mat-sidenav-container class="sidenav-container" >
-  <mat-sidenav
+<mat-sidenav-container class="sidenav-container"  >
+  <mat-sidenav 
   #drawer
   class="sidenav"
   [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
   [mode]="(isHandset$ | async) ? 'over' : 'side'"
   [opened]="isMenuOpen"  >
 
-    <mat-nav-list>
+    <mat-nav-list >
       <!-- <a [routerLink]="['/home']" mat-list-item href="#" routerLinkActive="active"><mat-icon routerLinkActive="active-icon">home</mat-icon><span class="ml-2" > Welcome </span></a> -->
       <a [routerLink]="['/todo']" mat-list-item href="#" routerLinkActive="active"><mat-icon routerLinkActive="active-icon">home</mat-icon><span class="ml-2" >ToDo</span></a>
       <a [routerLink]="['/pendingtasks']" mat-list-item href="#" routerLinkActive="active"><mat-icon routerLinkActive="active-icon">edit</mat-icon><span class="ml-2" >Pending</span></a>
       <a [routerLink]="['/sorting']" mat-list-item href="#" routerLinkActive="active"><mat-icon routerLinkActive="active-icon">sorting</mat-icon><span class="ml-2" >Sorted</span></a>
       <a [routerLink]="['/archive']" mat-list-item href="#" routerLinkActive="active"><mat-icon routerLinkActive="active-icon">done</mat-icon><span class="ml-2" >Archive</span></a>
+      <a [routerLink]="['/contactUs']" mat-list-item href="#" routerLinkActive="active"><mat-icon> phone</mat-icon><span class="ml-2" >Contact Us</span></a>
+      <a [routerLink]="['/aboutUs']" mat-list-item href="#" routerLinkActive="active"><mat-icon routerLinkActive="active-icon">info</mat-icon><span class="ml-2" >About Us</span></a>
       <!-- <a [routerLink]="['/pendingtasks']" mat-list-item href="#" routerLinkActive="active"><mat-icon routerLinkActive="active-icon">settings</mat-icon><span class="ml-2" >Pending</span></a> -->
     
     </mat-nav-list>

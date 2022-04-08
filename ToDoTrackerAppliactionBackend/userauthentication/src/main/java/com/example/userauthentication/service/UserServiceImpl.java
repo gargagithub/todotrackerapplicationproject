@@ -58,4 +58,13 @@ public class UserServiceImpl implements UserService{
     public List<User> getAllUser() {
         return (List<User>) userRepository.findAll(); //findAll return type is iterable
     }
+
+    @Override
+    public User getUser(String userEmail) throws UserNotFoundException {
+        User user=userRepository.findByUserEmail(userEmail);
+        if(user==null){
+            throw new UserNotFoundException();
+        }
+        return user;
+    }
 }

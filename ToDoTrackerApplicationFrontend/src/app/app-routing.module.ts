@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AboutUsComponent } from './about-us/about-us.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './components/home/home.component';
@@ -9,6 +10,7 @@ import { PendingtasksComponent } from './components/pendingtasks/pendingtasks.co
 
 import { RegistrationComponent } from './components/registration/registration.component';
 import { TodoComponent } from './components/todo/todo.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -23,7 +25,7 @@ const routes: Routes = [
   {path: 'registration', component: RegistrationComponent},
   {path: 'home', component: HomeComponent},
 
-  {path:"sorting",component:SortingComponent},
+  {path:"sorting",component:SortingComponent, canActivate:[AuthGuard]},
   {path:"todo",component:TodoComponent , canActivate:[AuthGuard]},
   {path:"archive",component:ArchiveComponent , canActivate:[AuthGuard]},
   {path: "navbar",component:NavbarComponent},
@@ -35,7 +37,9 @@ const routes: Routes = [
   {path: "taskform",component:TaskformComponent},
 
   {path: "update",component:UpdateUserComponent},
-  {path: "pendingtasks",component:PendingtasksComponent}
+  {path: "pendingtasks",component:PendingtasksComponent,canActivate:[AuthGuard]},
+  {path: "aboutUs",component:AboutUsComponent},
+  {path:"contactUs",component:ContactUsComponent}
 ];
 
 @NgModule({

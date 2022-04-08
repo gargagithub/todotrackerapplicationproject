@@ -22,7 +22,6 @@
 		<module>ToDoService</module>
 		<module>apigateway</module>
 		<module>ArchiveTasks</module>
-		<module>NotificationService</module>
 		<module>eurekaservice</module>
 	</modules>
 	<dependencies>
@@ -48,7 +47,24 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
 
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+			<version>2.2.10.RELEASE</version>
+		</dependency>
 
 	</dependencies>
 

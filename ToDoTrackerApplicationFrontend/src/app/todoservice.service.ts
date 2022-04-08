@@ -88,7 +88,12 @@ export class TodoserviceService {
   }
 
   getNotifications(userEmail:any):Observable<Task[]> {
-    return this.http.get<Task[]>("http://localhost:9000/api/v2/user/notifications/"+userEmail);
+    return this.http.get<Task[]>("http://localhost:9000/api/v2/user/notifications/"+userEmail)
+    .pipe(
+      tap(()=>{
+        this.refreshNeeded$.next();
+      })
+    );
   }
 
   updateUserdetails(user:any,userEmail:any){

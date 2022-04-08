@@ -161,10 +161,11 @@ h2{
 
 .fixedbutton {
 	position: fixed;
-	bottom: 100px;
+	bottom: 80px;
 	/* right: 500px; */
 	/* left: ; */
 	z-index: 100;
+	border-radius:50%;
 
 }
 /* The sticky class is added to the header with JS when it reaches its scroll position */

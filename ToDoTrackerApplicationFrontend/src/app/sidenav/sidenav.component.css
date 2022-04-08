@@ -4,7 +4,7 @@
   }
   
   .sidenav-container {
-    height: 92%;
+    height: 504px;
     position: relative;
   }
   
@@ -27,6 +27,7 @@
   
   .sidenavContainer {
     height: 100%;
+    
   }
   
   .toolbar-spacer {
@@ -58,15 +59,15 @@
 
   .mat-sidenav-content{
     /* background-color: rgb(34, 185, 185); */
-    background-image:url('./login2.jpg');
+    background-image:url('bg9.jpg');
     background-size: cover;
   background-position: center;
   }
 
    .mat-sidenav {
     /* height: calc(100vh - 65px); */
-    background-color:  #b7e1e4;
-    /* background-color:  #acacac; */
+    /* background-color:  #def6f8; */
+    background-color:  rgb(211, 211, 211)
 }
  
  /*.mat-sidenav {
@@ -89,3 +90,33 @@
   font-size: 2rem;
   color: lightgray;
 } */
+
+.logo{
+  float:left;
+  padding: 8px;
+}
+
+@media all and (max-width:300px){
+  .newColor{
+    display: block;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+  }
+  .toggle{
+    order:2;
+    display: flex;
+  }
+  button{
+    order: 2;
+    width: auto;
+    display: block;
+
+  }
+  .item{
+    order: 1;
+  }
+  .logo{
+    flex: 1;
+  }}

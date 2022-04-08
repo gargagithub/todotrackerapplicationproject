@@ -32,7 +32,7 @@ rel="stylesheet">
                                 <h2 >{{task.taskTitle}}<br><span style="font-size:small; font-family: 'Satisfy', cursive;">{{task.taskDescription}}</span></h2>
                                 <p>Priority: {{task.taskPriority }}</p>
                                 <p>Date: {{task.taskDeadline | date:"MM/dd/yy"}}</p>
-                                <p>Time: {{task.taskDeadline | date:"hh:mm"}}</p>
+                                <p>Time: {{task.taskDeadline | date:"hh:mm aa"}}</p>
                             </div>
                         </div>
                         <ul class="sci">
@@ -42,12 +42,12 @@ rel="stylesheet">
                             </li>
                             <li>
                                 <button type="button" class="btn btn-outline-info"
-                                    (click)="onEditOfficial(task); onCreateOfficial();loadOfficialTaskToUpdate(user.userEmail,task.taskId);">edit</button>
+                                    (click)="onEditOfficial(task); onCreateOfficial();loadOfficialTaskToUpdate(user.userEmail,task.taskId);">Update</button>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <button type="button" class="btn btn-outline-success"
                                     (click)="completeOfficialTask(task.taskId)">Done</button>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -68,7 +68,7 @@ rel="stylesheet">
                                 <p>Priority: {{task1.taskPriority }}</p>
                                 <p hidden>{{task1.taskId}}</p>
                                 <p>Date: {{task1.taskDeadline | date:"MM/dd/yy"}}</p>
-                                <p>Time: {{task1.taskDeadline | date:"hh:mm"}}</p>
+                                <p>Time: {{task1.taskDeadline | date:"hh:mm aa"}}</p>
                             </div>
 
                         </div>
@@ -79,12 +79,12 @@ rel="stylesheet">
                             </li>
                             <li>
                                 <button type="button" class="btn btn-outline-info"
-                                    (click)="onEditPersonal(task1); onCreatePersonal();loadPersonalTaskToUpdate(user.userEmail,task1.taskId); personalbuttonDisabled=false;officialbuttonDisabled=true;addbuttonhidden=true">edit</button>
+                                    (click)="onEditPersonal(task1); onCreatePersonal();loadPersonalTaskToUpdate(user.userEmail,task1.taskId); personalbuttonDisabled=false;officialbuttonDisabled=true;addbuttonhidden=true">Update</button>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <button type="button" class="btn btn-outline-success"
                                     (click)="completePersonalTask(task1.taskId)">Done</button>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -93,5 +93,5 @@ rel="stylesheet">
         </div>
     </div>
 </div>
-<button type="button" class="fixedbutton btn btn-danger" (click)="onCreate()" id="addbutton"> <i class="fa fa-plus"></i></button>
+<button type="button" class="fixedbutton btn btn-danger" (click)="onCreate()" id="addbutton" style="position: fixed;"> <i class="fa fa-plus"></i></button>
 </body>

@@ -12,6 +12,6 @@ public interface UserService {
     User findByUserEmailAndPassword(String userEmail, String passWord)throws UserNotFoundException;
     User updateUser(User user,String userEmail) throws UserNotFoundException ;
     List<User>getAllUser();
-
+    User getUser(String userEmail) throws UserNotFoundException;
 
 }

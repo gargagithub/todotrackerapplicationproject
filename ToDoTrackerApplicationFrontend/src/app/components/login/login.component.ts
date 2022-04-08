@@ -55,11 +55,10 @@ response=>{
   
   this.LoginService.loginUser(User);
 
-  // window.location.href="./todo"
+  window.location.href="./todo"
   console.log(this.credentials.userEmail)
   console.log(User);
-  this.router.navigate(['/todo'])
-  
+  this.router.navigate(['/todo']);
   console.log(this.email=this.LoginService.getEmail());
 
 },

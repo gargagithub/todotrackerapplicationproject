@@ -63,7 +63,12 @@ flex-direction: column;
 height: 100%;
  }
 /* ********************no need of bodyback class******************** */
- body{
-   
+ /* body{
+   z-index: 100;
    background-color: rgb(255, 0, 0);
- }
+ } */
+
+ /* .row{
+  z-index: 3000;
+  background-color: rgb(255, 0, 0);
+ } */
