@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UrlSegmentGroup } from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from './components/user';
 
 @Injectable({
   providedIn: 'root'
@@ -52,9 +55,12 @@ getToken(){
   return localStorage.getItem("token")
 }
 
-  getUserByEmail(userEmail:any){ 
-    return this.http.get("http://localhost:9000/api/v1/userservice/users/"+userEmail);
+  getUserByEmail(userEmail:any):Observable<User>{ 
+    return this.http.get<User>("http://localhost:9000/api/v1/userservice/users/"+userEmail);
   }
+
+  
+
 }
 
 

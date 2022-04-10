@@ -8,7 +8,7 @@
           
               <form [formGroup]="update">
                 
-                <div class="mb-3">
+                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">FirstName</label>
                   <input matInput formControlName="FirstName" id="FirstName" placeholder="Enter FirstName" class="form-control">
                  <span class="text-danger" *ngIf="update.controls['FirstName'].dirty && update.hasError('required','FirstName')">FirstName is required</span>
@@ -18,16 +18,17 @@
                   <label for="exampleInputPassword1" class="form-label" >LastName</label>
                   <input matInput formControlName="LastName" id="LastName" placeholder="Enter LastName" class="form-control">
                   <span class="text-danger" *ngIf="update.controls['LastName'].dirty && update.hasError('required','LastName')">LastName is required</span>
-                </div>
+                </div> 
+                
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label" >Password</label>
-                  <input matInput formControlName="Password" id="Password" placeholder="Enter Password" [type]="hide ? 'password' : 'text'" class="form-control">
+                  <input value="user.firstName" matInput formControlName="Password" id="Password" placeholder="Enter Password" [type]="hide ? 'password' : 'text'" class="form-control">
                   <span class="text-danger" *ngIf="update.controls['Password'].dirty && update.hasError('required','Password')">Password is required</span>
                 </div>
   
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Mobile Number</label>
-                  <input type="tel" formControlName="mobileNo" id="mobileNo" matInput placeholder="555-555-1234" class="form-control">
+                  <input value={{user.mobileNo}} type="tel" formControlName="mobileNo" id="mobileNo" matInput placeholder="555-555-1234" class="form-control">
                   <span class="text-danger" *ngIf="update.controls['mobileNo'].dirty && update.hasError('required','mobileNo')">MobileNo is required</span>
                 </div>
                 <button type="submit"  class="btn btn-danger" [disabled]="update.invalid"  (click)="updateNow()"> Update</button>

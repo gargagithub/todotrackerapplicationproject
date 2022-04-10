@@ -16,6 +16,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TaskformComponent } from 'src/app/taskform/taskform.component';
 import { PuTaskFormComponent } from 'src/app/pu-task-form/pu-task-form.component';
 import { OuTaskFormComponent } from 'src/app/ou-task-form/ou-task-form.component';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-todo',
@@ -306,5 +307,17 @@ export class TodoComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "45%";
     this.dialog.open(OuTaskFormComponent);
+  }
+
+  lowValue: number = 0;
+  highValue: number = 20;
+
+  // MatPaginator Output
+  
+
+  public getPaginatorData(event: PageEvent): PageEvent {
+    this.lowValue = event.pageIndex * event.pageSize;
+    this.highValue = this.lowValue + event.pageSize;
+    return event;
   }
 }

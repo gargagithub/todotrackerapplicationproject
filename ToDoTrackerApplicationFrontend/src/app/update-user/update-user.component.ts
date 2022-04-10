@@ -7,14 +7,13 @@ import { LoginComponent } from '../components/login/login.component';
 import { User } from '../components/user';
 import { LoginService } from '../login.service';
 import { TodoserviceService } from '../todoservice.service';
-
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
   styleUrls: ['./update-user.component.css']
 })
 export class UpdateUserComponent implements OnInit {
-userDetails:any;
+user!:User;
   userEmail:any;
   update=new FormGroup({
     FirstName:new FormControl('',[Validators.required]),
@@ -32,12 +31,17 @@ userDetails:any;
    ngOnInit(): void {
     this.userEmail=localStorage.getItem("user.Email");
     console.log(this.userEmail);
-    // this.loginservice.getUserByEmail(this.userEmail).subscribe(data=>{this.userDetails=data})
-    // console.log(this.userDetails);
-    // this.update.controls["FirstName"].setValue(this.userDetails.firstName);
-    // this.update.controls["LastName"].setValue(this.userDetails.lastName);
-    // this.update.controls["Password"].setValue(this.userDetails.password);
-    // this.update.controls["mobileNo"].setValue(this.userDetails.mobileNo);
+     this.loginservice.getUserByEmail(this.userEmail).subscribe(data => {this.user = data ;
+      this.update.controls["FirstName"].setValue(this.user.firstName);
+     this.update.controls["LastName"].setValue(this.user.lastName);
+      this.update.controls["Password"].setValue(this.user.password);
+      this.update.controls["mobileNo"].setValue(this.user.mobileNo);} );
+     
+    //  this.update.controls["FirstName"].setValue(this.user.firstName);
+    //  this.update.controls["LastName"].setValue(this.user.lastName);
+    //  this.update.controls["Password"].setValue(this.user.password);
+    //  this.update.controls["mobileNo"].setValue(this.user.mobileNo);
+  
    }
  
  get FirstName(){
@@ -68,6 +72,7 @@ userDetails:any;
    this.service.updateUserdetails(user,this.userEmail).subscribe(result=>{this.toast.success({detail:"successMessage", summary:"Details are Updated",duration:5500})
 
    this.onClose();
+   window.location.reload();
    this.router.navigate(['/todo'])
  },err => {
    this.toast.error({ detail: "Error Message", summary: "Faced issue in Updating task", duration: 5000 })
@@ -78,7 +83,10 @@ userDetails:any;
    this.update.reset();
   }
 
-  
+  onFill(user: any) {
+    this.loginservice.getUserByEmail(user);
+    console.log(user);
+  }
 
   onClose(){
     this.update.reset();

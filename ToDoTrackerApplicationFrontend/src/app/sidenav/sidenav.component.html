@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="newColor" >
+<mat-toolbar color="primary" >
   <mat-toolbar-row>
 
    
@@ -32,9 +32,16 @@
     <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn()"><mat-icon>account_circle</mat-icon></button>
     <mat-menu #menu="matMenu">
       
-      <button mat-menu-item>Welcome ({{userEmail}})</button>
-      <button mat-menu-item (click)=" onCreateUser(); ">update profile</button>
-      <button mat-menu-item (click)="logoutUser() ;resetStorage() " >Logout</button>
+      <button mat-menu-item style="font-family: cursive;font-size: 150%;">Welcome <span style="text-transform:uppercase;">{{user.firstName}}</span> </button>
+      <button mat-menu-item [matMenuTriggerFor]="profile"> Profile
+        <mat-menu #profile="matMenu" >
+          <button mat-menu-item><mat-icon>face</mat-icon><span style="text-transform:uppercase;text-align: center;"><b>NAME:</b>{{user.firstName}} {{user.lastName}}</span></button>
+          <button mat-menu-item><mat-icon>phone</mat-icon><span style="text-transform:uppercase;text-align: center;"><b>Mobile No:</b>{{user.mobileNo}} </span></button>
+          <button mat-menu-item><mat-icon>email</mat-icon><span style="text-align: center;"><b>EMAIL:</b>{{user.userEmail}} </span></button>
+        </mat-menu>
+      </button>
+      <button mat-menu-item (click)=" onCreateUser(); ">Update profile</button>
+      <button mat-menu-item (click)="logoutUser() ;resetStorage() " ><mat-icon>logout</mat-icon>Logout</button>
     </mat-menu>    
     </mat-toolbar-row>
 

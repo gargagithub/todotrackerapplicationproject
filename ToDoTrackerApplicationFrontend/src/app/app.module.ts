@@ -48,6 +48,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { Router } from '@angular/router';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,7 +105,7 @@ exports: [ MatInputModule,MatCardModule,MatProgressBarModule,MatDialogModule
     MatDialogModule,
     MatBadgeModule,
 
-   
+    MatPaginatorModule,
     FlexLayoutModule,
     NgToastModule,
     MatSidenavModule,

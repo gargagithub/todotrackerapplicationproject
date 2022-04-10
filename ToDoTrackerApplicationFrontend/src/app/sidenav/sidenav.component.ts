@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, timer } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { map, mergeMap, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,6 +10,7 @@ import { TodoserviceService } from '../todoservice.service';
 import { Task } from 'src/app/task';
 import { UpdateUserComponent } from '../update-user/update-user.component';
 import { MatDialog } from '@angular/material/dialog';
+import { User } from '../components/user';
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -22,6 +23,7 @@ export class SidenavComponent implements OnInit {
   public isBypass!: boolean;
   public mobile!: boolean;
   public isMenuInitOpen!: boolean;
+  user!: User;
   userEmail: any;
   service: any;
   officialTask: any;
@@ -30,7 +32,7 @@ export class SidenavComponent implements OnInit {
   notifyLength!:number;
   imageSrc='assets/nTask-logo-32.png';
   imageAlt='webSite'
-  private timer!: Observable<0>;
+  private timer!: any;
   constructor(private breakpointObserver: BreakpointObserver,
               private router: Router,
               private _snackBar: MatSnackBar  , private loginservice:LoginService , private todoservice:TodoserviceService,private dialog:MatDialog) { }
@@ -45,10 +47,14 @@ export class SidenavComponent implements OnInit {
     this.isMenuOpen = true;  // Open side menu by default
     this.title = 'Material Layout Demo';
     this.userEmail=localStorage.getItem("user.Email");
-    // this.todoservice.refreshNeeded.subscribe(()=>(this.onTimeOut()));
-    this.timer = timer(10000);
-    this.todoservice.refreshNeeded.subscribe(() =>{this.timer.subscribe((t) => this.onTimeOut());});
-    this.timer.subscribe((t) => this.onTimeOut());
+
+    this.loginservice.getUserByEmail(this.userEmail).subscribe(data =>this.user = data );
+     this.timer = timer(20000);
+     this.onTimeOut();
+     this.todoservice.refreshNeeded.subscribe(() =>{this.timer.subscribe(() => this.onTimeOut());});
+    
+     //this.timer.subscribe(() => this.onTimeOut());
+
   }
   
   onTimeOut() {
