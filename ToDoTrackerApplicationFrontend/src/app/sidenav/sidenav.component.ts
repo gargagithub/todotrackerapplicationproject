@@ -25,6 +25,9 @@ export class SidenavComponent implements OnInit {
   public isMenuInitOpen!: boolean;
   user!: User;
   userEmail: any;
+  userFirstName:any;
+  userLastName:any;
+  userMobileNo:any;
   service: any;
   officialTask: any;
   personalTask: any;
@@ -48,7 +51,11 @@ export class SidenavComponent implements OnInit {
     this.title = 'Material Layout Demo';
     this.userEmail=localStorage.getItem("user.Email");
 
-    this.loginservice.getUserByEmail(this.userEmail).subscribe(data =>this.user = data );
+    this.loginservice.getUserByEmail(this.userEmail).subscribe(data =>{ this.user = data;
+      this.userFirstName=this.user.firstName; 
+      this.userLastName=this.user.lastName;
+      this.userMobileNo=this.user.mobileNo
+      console.log(this.userFirstName)});
      this.timer = timer(20000);
      this.onTimeOut();
      this.todoservice.refreshNeeded.subscribe(() =>{this.timer.subscribe(() => this.onTimeOut());});

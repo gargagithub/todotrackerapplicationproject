@@ -15,7 +15,7 @@
     <span class="toolbar-spacer "></span>
     <button mat-flat-buttonbtn  class="btn btn-success btn-sm"  [matMenuTriggerFor]="belowMenu" *ngIf="loggedIn()" matBadge={{notifyLength}} matBadgePosition="before" matBadgeColor="accent" style="margin-right: 7px;"><i class="fa fa-bell"></i></button>
 <mat-menu #belowMenu="matMenu" yPosition="below">
-<button *ngFor="let task of notiificationList" mat-menu-item>hello,you have <b>{{task.taskTitle}}</b> task pending</button>
+<button *ngFor="let task of notiificationList" mat-menu-item>Hello,you have <b>{{task.taskTitle}}</b> task pending</button>
 
 </mat-menu>
 
@@ -29,15 +29,15 @@
     <button  mat-flat-button color="warn" *ngIf="loggedIn()" (click)="logoutUser() ;resetStorage() ">Logout</button>
     <button mat-raised-button routerLink="/pendingtasks"color="warn" *ngIf="loggedIn()" style="margin-right: 7px; margin-left: 7px;">Pending Tasks</button> -->
    
-    <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn()"><mat-icon>account_circle</mat-icon></button>
+    <button mat-button [matMenuTriggerFor]="menu" *ngIf="loggedIn()"><b>{{userFirstName | uppercase}}  </b>  <mat-icon>account_circle</mat-icon></button>
     <mat-menu #menu="matMenu">
       
-      <button mat-menu-item style="font-family: cursive;font-size: 150%;">Welcome <span style="text-transform:uppercase;">{{user.firstName}}</span> </button>
-      <button mat-menu-item [matMenuTriggerFor]="profile"> Profile
+      <!-- <button mat-menu-item style="font-family: cursive;font-size: 150%;">Welcome <span style="text-transform:uppercase;">{{userFirstName}}</span> </button> -->
+       <button mat-menu-item [matMenuTriggerFor]="profile"> Profile
         <mat-menu #profile="matMenu" >
-          <button mat-menu-item><mat-icon>face</mat-icon><span style="text-transform:uppercase;text-align: center;"><b>NAME:</b>{{user.firstName}} {{user.lastName}}</span></button>
-          <button mat-menu-item><mat-icon>phone</mat-icon><span style="text-transform:uppercase;text-align: center;"><b>Mobile No:</b>{{user.mobileNo}} </span></button>
-          <button mat-menu-item><mat-icon>email</mat-icon><span style="text-align: center;"><b>EMAIL:</b>{{user.userEmail}} </span></button>
+          <button mat-menu-item><mat-icon> insert_emoticon</mat-icon><span style="text-transform:uppercase;text-align: center;"><b>NAME:</b> {{userFirstName}} {{userLastName}}</span></button>
+          <button mat-menu-item><mat-icon>phone</mat-icon><span style="text-transform:uppercase;text-align: center;"><b>Mobile No:</b> {{userMobileNo}} </span></button>
+          <button mat-menu-item><mat-icon>email</mat-icon><span style="text-align: center;"><b>EMAIL:</b> {{userEmail}} </span></button>
         </mat-menu>
       </button>
       <button mat-menu-item (click)=" onCreateUser(); ">Update profile</button>
